@@ -12,63 +12,43 @@ SECCIÓN A
 
 # MANUAL TECNICO
 ## Descripcion
-La gestion de memoria es un aspecto importante para todo sistema informatico. Para facilitar la tarea de llevar un control de la memoria se realizo un programa encargado de monitorear el uso de memoria de cada proceso en un sistema operativo linux, a partir de las solicitudes mmap y munmap realizadas. 
+La practi consistio en la obtencion de informacion de libros. Este proceso incluye la utilización del ISBN para obtener datos esenciales de cada libro, como el título, autor y precio. Debido a la naturaleza engorrosa y repetitiva de esta tarea, se ha decidido implementar una solución de automatización utilizando la herramienta UiPath. 
 
-## Maquina Virtual
-En esta maquina se realizo un programa en C el cual con ayuda de la herramienta de systemtap obtenia todas las solicitudes de memoria de los procesos activos, dicha maquina se conecta a una base de datos levantada en mysql donde almacena cada uno de los procesos capturados.
+## Objetivo
+El objetivo de esta automatización es registrar libros de manera eficiente y precisa, utilizando el ISBN para obtener y almacenar información relevante de cada libro. La solución consta de dos procesos principales:
 
+- Proceso de Obtención de los ISBN: Automatización del almacenamiento de ISBN en la un cola del orchestrator de uipath.
+- Proceso de Registro en Excel: Automatización de la obtencion de los datos de los libros a partir de los ISBN de la cola e inserción de los datos obtenidos en excel.
 
-### Systemtap
-SystemTap es una herramienta de diagnóstico y monitoreo de sistemas en entornos Linux. Dicha herramienta en este proyecto fue la encargada de monitorear los procesos para identificar la informacion necesaria y realizar las acciones respectivas.
+## Requisitos Previos
+- Instalación de UiPath Studio.
+- Base de datos o API de terceros para obtener datos del libro mediante el ISBN.
+- Credenciales de acceso necesarias para las aplicaciones involucradas.
 
-- ### Mmap:
-    Esta llamada al sistema se utiliza para asignar una región de memoria virtual dentro del espacio de direcciones de un proceso. Permite mapear un archivo existente en memoria o crear una nueva región de memoria asignada dinámicamente. Algunos de los parámetros que se pueden especificar incluyen la dirección de inicio deseada, el tamaño de la región de memoria y los permisos de acceso.
+## Uipath
+UiPath es una plataforma de automatización robótica de procesos (RPA, por sus siglas en inglés) que permite a las organizaciones automatizar tareas repetitivas y rutinarias en aplicaciones de software. Con UiPath, las empresas pueden aumentar la eficiencia, reducir errores y liberar a los empleados para que se concentren en tareas de mayor valor.
 
-- ### Munmap
-    Esta llamada al sistema se utiliza para desasignar una región de memoria virtual previamente asignada mediante mmap. Permite liberar la memoria asignada y devolverla al sistema operativo. Algunos de los parámetros que se pueden especificar incluyen la dirección de inicio de la región de memoria y el tamaño de la región a desasignar.
-## DB
-### Tabla
-```sql
-create table procesos(
-	id integer auto_increment primary key ,
-    pid INT NOT NULL,
-    nombre_proceso VARCHAR(255) NOT NULL,
-    llamada VARCHAR(255) NOT NULL,
-    tamanio INT NOT NULL,
-    fecha DATETIME
-);
-```
-### Procedimiento Almacenado
-```sql
-DELIMITER //
+## Extensiones
+### Add in de Excel
+La extensión Add-in de Excel de UiPath es una herramienta que permite la integración directa entre UiPath y Microsoft Excel. Esta extensión mejora y facilita la automatización de tareas dentro de Excel, permitiendo a los usuarios interactuar con las hojas de cálculo de manera más eficiente y robusta. A continuación, se detallan las características, ventajas y cómo utilizar el Add-in de Excel de UiPath.
+### Chrome
+La extensión de Chrome de UiPath es una herramienta que permite a UiPath Studio y UiPath Robots interactuar directamente con el navegador Google Chrome. Esta extensión es esencial para automatizar tareas web, ya que habilita las capacidades de automatización de UiPath dentro del entorno del navegador, permitiendo la manipulación de elementos web, la extracción de datos y la automatización de flujos de trabajo complejos.
+## Actividades 
 
-CREATE PROCEDURE insertar_proceso(
-    IN pid_in INT,
-    IN nombre_proceso_in VARCHAR(255),
-    IN llamada_in VARCHAR(255),
-    IN tamanio_in INT,
-    IN fecha_in VARCHAR(50)
-)
-BEGIN
-    DECLARE fecha_convertida DATETIME;
+Las actividades en UiPath son bloques de construcción fundamentales utilizados para crear flujos de trabajo de automatización. Cada actividad realiza una acción específica, y al combinar varias actividades, puedes automatizar procesos complejos. Las utilizadas en el proyecto fueron: 
 
-    -- Convertir la cadena de fecha al formato de MySQL
-    SET fecha_convertida = STR_TO_DATE(fecha_in, '%a %b %d %H:%i:%s %Y');
-
-    -- Insertar el proceso con la fecha convertida
-    INSERT INTO procesos (pid, nombre_proceso, llamada, tamanio, fecha) 
-    VALUES (pid_in, nombre_proceso_in, llamada_in, tamanio_in, fecha_convertida);
-END 
-
-DELIMITER ; 
-```
-
-## Backend
-
-El backend fue desarrollado  en python apoyado por el framework flask. En este se obtienen todos los procesos almacenados por la maquina virtual, este a partir de unas consultas a la base de datos recibe la informacion, la filtra y la envia apartir de la herramienta socket io.
-
-## Frontend
-El frontend fue realizado en javascript react. En el se muestra toda la informacion obtenida del backend en tablas y graficas, las cuales iran cambiandp en tiempo real.
-
-## Socket io
-Socket.IO es una poderosa herramienta para crear aplicaciones web en tiempo real que requieren comunicación bidireccional entre clientes y servidores. Gracias a este es que se pueden ver los cambios en tiempo real en el frontend.
+- Assign: Asigna un valor a una variable.
+- Delay: Pausa la ejecución durante un tiempo específico.
+- For Each: Itera sobre una colección de elementos.
+- Try Catch: Captura un tipo de excepción especificado en una secuencia o actividad y muestra una notificación de error o la descarta y continúa la ejecución.
+- Get Queue Items: Te permite recuperar una lista de hasta 100 transacciones de una cola de Orchestratorindicada
+- Get Transaction Item: Obtiene un elemento de cola de Orchestrator para que pueda procesarlo.
+- Add queue item: Agrega un nuevo elemento en una cola de Orchestrator.
+- Click: Simula un clic del mouse en un elemento de la interfaz de usuario.
+- Get Text: Extrae texto de un elemento de la interfaz de usuario.
+- Type Into: Escribe texto en un campo de entrada.
+- check app state: Comprueba el estado de una aplicación o navegador web verificando si un elemento aparece o desaparece de la interfaz de usuario.
+- Excel Application Scope: Define un ámbito para realizar actividades en un archivo de Excel.
+- Use excel file: Permite seleccionar un archivo de Excel para usarlo en la automatización
+- For each excel row: Ejecuta una o más actividades para cada fila de un rango, tabla u hoja.
+- Write Cell: Escribe en una celda específica.
