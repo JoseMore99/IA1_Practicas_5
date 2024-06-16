@@ -42,7 +42,7 @@ es(Clase, Obj):-instancia_de(Obj, Clasep),
                 es_sub(Clasep, Clase).
 
 
-propiedad(Obj,Prop):-es(Clase,Obj),
+propiedades(Obj,Prop):-es(Clase,Obj),
                      tiene_propiedad(Clase,Propiedad,Clase2),
                      Prop =.. [Propiedad, Clase2].
 
