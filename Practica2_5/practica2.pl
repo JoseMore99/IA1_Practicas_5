@@ -14,6 +14,8 @@ subclase_de(consola, plataforma).
 subclase_de(nintendo_switch, consola).
 subclase_de(ps5, consola).
 subclase_de(xboxsx, consola).
+subclase_de(rpg, genero).
+subclase_de(aventura, genero).
 
 tiene_propiedad(movil, tiene, so).
 tiene_propiedad(pc, tiene, procesador).
@@ -34,8 +36,7 @@ tiene_propiedad(joycons, tiene, nintendo_switch).
 tiene_propiedad(videojuegos, tiene, clasificacion).
 tiene_propiedad(videojuegos, tiene, genero).
 tiene_propiedad(videojuegos, se_juega_en, plataforma).
-tiene_propiedad(rpg, es_un_tipo_de, genero).
-tiene_propiedad(aventura, es_un_tipo_de, genero).
+
 
 es(Clase, Obj):-instancia_de(Obj, Clase).
 es(Clase, Obj):-instancia_de(Obj, Clasep),
