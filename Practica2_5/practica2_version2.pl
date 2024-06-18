@@ -27,14 +27,11 @@ tiene_propiedad(pc, tiene, procesador).
 tiene_propiedad(pc, tiene, age_of_empire).
 tiene_propiedad(nintendo, tiene, pokemon).
 tiene_propiedad(nintendo, tiene, zelda).
-tiene_propiedad(pokemon, desarrollada_por, gameFreak).
 tiene_propiedad(playStation, tiene, bloodborne).
 tiene_propiedad(playStation, tiene, god_of_war).
 tiene_propiedad(ps4, se_juega_con, dualShock).
 tiene_propiedad(ps5, se_juega_con, dualsense).
-tiene_propiedad(bloodborne, desarrollada_por, fromSoftware).
 tiene_propiedad(xbox, tiene, halo).
-tiene_propiedad(god_of_war, desarrollada_por, santa_monica_studio).
 tiene_propiedad(nintendo_3ds, es, solo_portatil).
 tiene_propiedad(nintendo_3ds, tiene, graficos_3d).
 tiene_propiedad(new_2ds, no_tiene, graficos_3d).
@@ -45,11 +42,14 @@ tiene_propiedad(switch, se_juega_con, joycons).
 tiene_propiedad(switch_oled, portabilidad_es, opcional).
 tiene_propiedad(switch_lite, portabilidad_es, solo_portatil).
 
+incompatible(tiene(X), no_tiene(X)).
+
 es(Clase, Obj):-instancia_de(Obj, Clase).
 es(Clase, Obj):-instancia_de(Obj, Clasep),
                 es_sub(Clasep, Clase).
 
-
+propiedades(Obj,Prop):-tiene_propiedad(Obj,Propiedad,Clase),
+                        Prop =.. [Propiedad, Clase].
 propiedades(Obj,Prop):-es(Clase,Obj),
                      tiene_propiedad(Clase,Propiedad,Clase2),
                      Prop =.. [Propiedad, Clase2].

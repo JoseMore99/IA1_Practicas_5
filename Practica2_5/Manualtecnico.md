@@ -12,7 +12,7 @@ SECCIÓN A
 # MANUAL TECNICO
 
 # Introduccion 
-Este manual técnico está diseñado para guiar a los usuarios en la creación e implementación de una red semántica centrada en el tema de los videojuegos. Las redes semánticas son representaciones gráficas que ilustran cómo los conceptos están interrelacionados. En este caso, se emplearán para modelar y visualizar las relaciones entre diferentes elementos dentro del dominio de los videojuegos.
+Este manual técnico está diseñado para guiar a los usuarios en la creación e implementación de una red semántica centrada en el tema de plataformas para jugar videojuegos. Las redes semánticas son representaciones gráficas que ilustran cómo los conceptos están interrelacionados. En este caso, se emplearán para modelar y visualizar las relaciones entre diferentes elementos dentro del dominio de las plataformas para videojuegos.
 
 ##  Conceptos Básicos
 
@@ -27,8 +27,8 @@ Este manual técnico está diseñado para guiar a los usuarios en la creación e
 ## Estructura de la Red Semántica
 La red semántica se estructura en varios niveles de nodos y relaciones. Los principales elementos incluyen:
 
-- Nodos: Representan conceptos como Videojuegos, Géneros, Plataformas, Desarrolladores, Personajes, Clasificaciones y algunas otras caracteristicas.
+- Nodos: Representan conceptos como Videojuegos, Plataformas, Propiedades y algunas otras caracteristicas.
 - Subclases: Son categorías específicas bajo cada nodo principal, por ejemplo, los diferentes tipos de plataformas para jugar videojuegos.
-- Instancias: Ejemplos específicos dentro de cada subclase, como juegos individuales, compañías desarrolladoras, y personajes.
+- Instancias: Ejemplos específicos dentro de cada subclase, como consolas especificas o tipos de consolas.
 ## Diagrama de la red semantica 
-![diagrama](img/Redsemantica_1.jpg) 
+![diagrama](img/Redsemantica_2.jpg) 
