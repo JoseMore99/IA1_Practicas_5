@@ -11,44 +11,46 @@ SECCIÓN A
 | Paula Gabriela García Reinoso | 201700823 |
 
 # MANUAL TECNICO
-## Descripcion
-La practi consistio en la obtencion de informacion de libros. Este proceso incluye la utilización del ISBN para obtener datos esenciales de cada libro, como el título, autor y precio. Debido a la naturaleza engorrosa y repetitiva de esta tarea, se ha decidido implementar una solución de automatización utilizando la herramienta UiPath. 
 
-## Objetivo
-El objetivo de esta automatización es registrar libros de manera eficiente y precisa, utilizando el ISBN para obtener y almacenar información relevante de cada libro. La solución consta de dos procesos principales:
+## Requisitos del Sistema
 
-- Proceso de Obtención de los ISBN: Automatización del almacenamiento de ISBN en la un cola del orchestrator de uipath.
-- Proceso de Registro en Excel: Automatización de la obtencion de los datos de los libros a partir de los ISBN de la cola e inserción de los datos obtenidos en excel.
+**Hardware**: 
+  - PC con Windows 7/8/10 o Mac con OS X 10.11 o superior.
+  - Dispositivo móvil (Android) para pruebas de AR.
+  
+**Software**:
+  - Unity 2019.4.29f1 o superior.
+  - Vuforia Engine.
+  - SDK de Android o iOS según corresponda.
+## Conceptos basicos
+- Realidad Aumentada (AR): Es una tecnología que superpone información digital, como imágenes, sonidos y otras sensaciones, sobre el mundo real a través de dispositivos como smartphones, tablets y gafas especiales.
 
-## Requisitos Previos
-- Instalación de UiPath Studio.
-- Base de datos o API de terceros para obtener datos del libro mediante el ISBN.
-- Credenciales de acceso necesarias para las aplicaciones involucradas.
+- Vuforia: es un SDK de Realidad Aumentada (AR) multiplataforma que permite a los desarrolladores crear aplicaciones AR para dispositivos móviles y digitales. Vuforia se destaca por su capacidad de reconocimiento de objetos, imágenes y superficies, facilitando la integración de elementos digitales en el entorno físico.  Vuforia proporciona una suite robusta para el desarrollo de experiencias AR, integrándose fácilmente con motores de desarrollo como Unity, facilitando la creación de aplicaciones interactivas y envolventes.
 
-## Uipath
-UiPath es una plataforma de automatización robótica de procesos (RPA, por sus siglas en inglés) que permite a las organizaciones automatizar tareas repetitivas y rutinarias en aplicaciones de software. Con UiPath, las empresas pueden aumentar la eficiencia, reducir errores y liberar a los empleados para que se concentren en tareas de mayor valor.
+- Unity:Unity es un motor de videojuegos 3D potente y versátil, ampliamente utilizado para el desarrollo de juegos y aplicaciones interactivas en múltiples plataformas. Unity permite a los desarrolladores crear experiencias en 2D y 3D, realidad aumentada (AR), realidad virtual (VR) y otras funcionalidades. Unity es conocido por su facilidad de uso, amplia documentación y comunidad activa, lo que lo convierte en una opción popular tanto para desarrolladores independientes como para grandes estudios de desarrollo. Su capacidad para exportar proyectos a múltiples plataformas, como PC, consolas, móviles y web, amplía las posibilidades y el alcance de las aplicaciones creadas con este motor.
 
-## Extensiones
-### Add in de Excel
-La extensión Add-in de Excel de UiPath es una herramienta que permite la integración directa entre UiPath y Microsoft Excel. Esta extensión mejora y facilita la automatización de tareas dentro de Excel, permitiendo a los usuarios interactuar con las hojas de cálculo de manera más eficiente y robusta. A continuación, se detallan las características, ventajas y cómo utilizar el Add-in de Excel de UiPath.
-### Chrome
-La extensión de Chrome de UiPath es una herramienta que permite a UiPath Studio y UiPath Robots interactuar directamente con el navegador Google Chrome. Esta extensión es esencial para automatizar tareas web, ya que habilita las capacidades de automatización de UiPath dentro del entorno del navegador, permitiendo la manipulación de elementos web, la extracción de datos y la automatización de flujos de trabajo complejos.
-## Actividades 
+- Reconocimiento de Objetos: El reconocimiento de objetos en la Realidad Aumentada (AR) es fundamental para crear experiencias inmersivas y precisas. Se basa en la identificación y seguimiento de objetos del mundo real para superponer elementos digitales. Aquí se describen los principios clave, técnicas de coincidencia de patrones y seguimiento de imágenes.
 
-Las actividades en UiPath son bloques de construcción fundamentales utilizados para crear flujos de trabajo de automatización. Cada actividad realiza una acción específica, y al combinar varias actividades, puedes automatizar procesos complejos. Las utilizadas en el proyecto fueron: 
+## Configuración del Entorno de Desarrollo
 
-- Assign: Asigna un valor a una variable.
-- Delay: Pausa la ejecución durante un tiempo específico.
-- For Each: Itera sobre una colección de elementos.
-- Try Catch: Captura un tipo de excepción especificado en una secuencia o actividad y muestra una notificación de error o la descarta y continúa la ejecución.
-- Get Queue Items: Te permite recuperar una lista de hasta 100 transacciones de una cola de Orchestratorindicada
-- Get Transaction Item: Obtiene un elemento de cola de Orchestrator para que pueda procesarlo.
-- Add queue item: Agrega un nuevo elemento en una cola de Orchestrator.
-- Click: Simula un clic del mouse en un elemento de la interfaz de usuario.
-- Get Text: Extrae texto de un elemento de la interfaz de usuario.
-- Type Into: Escribe texto en un campo de entrada.
-- check app state: Comprueba el estado de una aplicación o navegador web verificando si un elemento aparece o desaparece de la interfaz de usuario.
-- Excel Application Scope: Define un ámbito para realizar actividades en un archivo de Excel.
-- Use excel file: Permite seleccionar un archivo de Excel para usarlo en la automatización
-- For each excel row: Ejecuta una o más actividades para cada fila de un rango, tabla u hoja.
-- Write Cell: Escribe en una celda específica.
+- Instalación de Unity: Descargar e instalar Unity, configurar el entorno de desarrollo y familiarizarse con la interfaz.
+
+- Instalación de Vuforia: Descargar e instalar el SDK de Vuforia, crear una cuenta de desarrollador y obtener la licencia.
+
+- Configuración de Vuforia en Unity: Integrar el SDK de Vuforia en un proyecto de Unity, configurar la licencia y crear un objeto Vuforia Image Target.
+
+- Importación de Modelos 3D: Importar modelos 3D de un Nintendo Switch y sus partes en el proyecto de Unity
+
+## Desarrollo de la Aplicación AR
+
+- Creación de la Escena AR: Diseñar la escena AR en Unity, posicionar el objeto Vuforia Model Target y los modelos 3D de las partes del Nintendo Switch.
+
+- Sincronización de Modelos 3D: Sincronizar la aparición y posición de los modelos 3D con la detección y seguimiento del objeto Vuforia Model Target.
+
+- Interacciones con los Modelos 3D: Implementar interacciones con los modelos 3D, resaltando el objeto e identificando partes especificas.
+
+## Despliegue y Pruebas de la Aplicación
+
+- Construcción de la Aplicación: Construir la aplicación AR para la plataforma objetivo (Android o iOS) utilizando Unity Build Settings.
+
+- Prueba de la Aplicación: Probar la aplicación AR en un dispositivo móvil con cámara compatible, verificar el reconocimiento del Nintendo Switch, la interacción con los modelos 3D y el rendimiento general.
